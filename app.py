@@ -48,6 +48,10 @@ class MainWindow(QWidget):
             convert(word_file, pdf_file)
             self.progress_bar.setValue(i + 1)
 
+        QMessageBox.information(self, 'Conversão concluída',
+                                f'{total_files} arquivos foram convertidos com sucesso.')
+        self.close()
+
 
 app = QApplication([])
 window = MainWindow()
