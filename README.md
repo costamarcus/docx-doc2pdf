@@ -25,7 +25,7 @@ Para usar o Conversor de Arquivos DOCX e DOC para PDF, siga os passos abaixo:
 3. Escolha a pasta de destino para os arquivos convertidos.
 4. Clique no botão "Converter" para iniciar o processo de conversão.
 ## **Captura de tela**
-[Imagem]()
+[Imagem](https://github.com/costamarcus/conversor-docx-and-doc-to-PDF/blob/main/img/app.png)
 Conversor de Arquivos DOCX e DOC para PDF
 
 ## **Considerações Finais**
