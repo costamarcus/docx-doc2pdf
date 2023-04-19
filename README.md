@@ -1,6 +1,6 @@
 # **Documentação**
 ## **Visão Geral**
-O software Conversor de Arquivos DOCX e DOC para PDF é uma ferramenta simples e fácil de usar que permite a conversão de arquivos nos formatos DOCX e DOC para PDF. O software foi criado com o objetivo de fornecer aos usuários uma solução rápida e eficiente para converter seus arquivos de texto para o formato PDF, que é amplamente utilizado para compartilhar documentos eletrônicos.
+O software converte arquivos DOCX e DOC para PDF, é uma ferramenta simples e fácil de usar que permite a conversão de arquivos nos formatos DOCX e DOC para PDF. O software foi criado com o objetivo de fornecer aos usuários uma solução rápida e eficiente para converter seus arquivos de texto para o formato PDF, que é amplamente utilizado para compartilhar documentos eletrônicos.
 
 ## **Recursos**
 - Converte arquivos nos formatos DOCX e DOC para PDF.
