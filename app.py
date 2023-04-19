@@ -45,7 +45,13 @@ class MainWindow(QWidget):
 
         for i, word_file in enumerate(self.word_files):
             pdf_file = word_file.replace('.docx', '.pdf')
-            convert(word_file, pdf_file)
+            try:
+                convert(word_file, pdf_file)
+            except Exception as e:
+                QMessageBox.critical(
+                    self, 'Erro na conversão', f'Erro ao converter o arquivo "{word_file}": {e}')
+                return
+
             self.progress_bar.setValue(i + 1)
 
         QMessageBox.information(self, 'Conversão concluída',
