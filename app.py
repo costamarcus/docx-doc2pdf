@@ -1,7 +1,6 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QFileDialog, QProgressBar, QMessageBox
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QColor
 from docx2pdf import convert
-from tkinter import Tk
 
 
 class MainWindow(QWidget):
@@ -20,12 +19,16 @@ class MainWindow(QWidget):
 
         self.button_start = QPushButton('Iniciar', self)
         self.button_start.move(150, 70)
+        self.button_start.setStyleSheet('background-color: green')
         self.button_start.clicked.connect(self.start_conversion)
 
         self.word_files = []
 
         self.progress_bar = QProgressBar(self)
         self.progress_bar.setGeometry(20, 110, 360, 20)
+
+        self.color_yellow = QColor('yellow')
+        self.color_green = QColor('green')
 
     def get_word_files(self):
         filenames, _ = QFileDialog.getOpenFileNames(
@@ -43,6 +46,8 @@ class MainWindow(QWidget):
         self.progress_bar.setMaximum(total_files)
         self.progress_bar.setValue(0)
 
+        self.button_start.setStyleSheet(
+            f'background-color: {self.color_yellow.name()}')
         for i, word_file in enumerate(self.word_files):
             pdf_file = word_file.replace('.docx', '.pdf')
             try:
@@ -50,10 +55,13 @@ class MainWindow(QWidget):
             except Exception as e:
                 QMessageBox.critical(
                     self, 'Erro na conversão', f'Erro ao converter o arquivo "{word_file}": {e}')
+                self.button_start.setStyleSheet(
+                    f'background-color: {self.color_green.name()}')
                 return
-
             self.progress_bar.setValue(i + 1)
 
+        self.button_start.setStyleSheet(
+            f'background-color: {self.color_green.name()}')
         QMessageBox.information(self, 'Conversão concluída',
                                 f'{total_files} arquivos foram convertidos com sucesso.')
         self.close()
