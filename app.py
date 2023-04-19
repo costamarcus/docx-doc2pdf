@@ -1,6 +1,7 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QFileDialog, QProgressBar
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QFileDialog, QProgressBar, QMessageBox
 from PyQt5.QtGui import QFont
 from docx2pdf import convert
+from tkinter import Tk
 
 
 class MainWindow(QWidget):
@@ -32,6 +33,12 @@ class MainWindow(QWidget):
         self.word_files = filenames
 
     def start_conversion(self):
+        if not self.word_files:
+            QMessageBox.warning(self, 'Nenhum arquivo selecionado',
+                                'Por favor, selecione um ou mais arquivos Word para converter.')
+            self.button_word.setFocus()
+            return
+
         total_files = len(self.word_files)
         self.progress_bar.setMaximum(total_files)
         self.progress_bar.setValue(0)
