@@ -19,7 +19,6 @@ class MainWindow(QWidget):
 
         self.button_start = QPushButton('Iniciar', self)
         self.button_start.move(150, 70)
-        self.button_start.setStyleSheet('background-color: green')
         self.button_start.clicked.connect(self.start_conversion)
 
         self.word_files = []
@@ -28,7 +27,6 @@ class MainWindow(QWidget):
         self.progress_bar.setGeometry(20, 110, 360, 20)
 
         self.color_yellow = QColor('yellow')
-        self.color_green = QColor('green')
 
     def get_word_files(self):
         filenames, _ = QFileDialog.getOpenFileNames(
@@ -41,6 +39,8 @@ class MainWindow(QWidget):
                                 'Por favor, selecione um ou mais arquivos Word para converter.')
             self.button_word.setFocus()
             return
+        else:
+            self.button_word.setStyleSheet('')
 
         total_files = len(self.word_files)
         self.progress_bar.setMaximum(total_files)
@@ -48,6 +48,7 @@ class MainWindow(QWidget):
 
         self.button_start.setStyleSheet(
             f'background-color: {self.color_yellow.name()}')
+
         for i, word_file in enumerate(self.word_files):
             pdf_file = word_file.replace('.docx', '.pdf')
             try:
@@ -55,13 +56,9 @@ class MainWindow(QWidget):
             except Exception as e:
                 QMessageBox.critical(
                     self, 'Erro na conversão', f'Erro ao converter o arquivo "{word_file}": {e}')
-                self.button_start.setStyleSheet(
-                    f'background-color: {self.color_green.name()}')
                 return
             self.progress_bar.setValue(i + 1)
 
-        self.button_start.setStyleSheet(
-            f'background-color: {self.color_green.name()}')
         QMessageBox.information(self, 'Conversão concluída',
                                 f'{total_files} arquivos foram convertidos com sucesso.')
         self.close()
